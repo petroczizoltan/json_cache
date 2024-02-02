@@ -11,6 +11,36 @@ void main() {
     await tearDownTestHive();
   });
   group('JsonCacheHive', () {
+    group('values', () {
+      test('no values in memory', () async {
+        final box = await Hive.openBox<String>('test-values');
+        final JsonCacheHive hiveCache = JsonCacheHive(box);
+        final values = hiveCache.values();
+        expect(values, isEmpty);
+      });
+      test('some values in memory', () async {
+        const profKey = 'profile';
+        const prefKey = 'preferences';
+        final profData = <String, dynamic>{'id': 1, 'name': 'John Due'};
+        final prefData = <String, dynamic>{
+          'theme': 'dark',
+          'notifications': {'enabled': true},
+        };
+        final box = await Hive.openBox<String>('test-values');
+        final JsonCacheHive hiveCache = JsonCacheHive(box);
+        await hiveCache.refresh(profKey, profData);
+        await hiveCache.refresh(prefKey, prefData);
+        final values = hiveCache.values();
+        expect(values, hasLength(2));
+        expect(
+          values,
+          containsAll([
+            profData,
+            prefData,
+          ]),
+        );
+      });
+    });
     test('clear, value, refresh', () async {
       final box = await Hive.openBox<String>('test-clear-value-refresh');
       const profKey = 'profile';

@@ -12,6 +12,13 @@ class JsonCacheHive implements JsonCache {
 
   final Box<String> _box;
 
+  /// Returns a copy of the cached values.
+  List<Map<String, dynamic>> values() {
+    return _box.values.map((String value) {
+      return json.decode(value) as Map<String, dynamic>;
+    }).toList();
+  }
+
   @override
   Future<void> clear() async {
     await _box.clear();
