@@ -92,6 +92,14 @@ class JsonCacheMem implements JsonCache {
   /// shared mutex.
   static final _shrMutex = ReadWriteMutex();
 
+  /// Returns a copy of the values stored in memory.
+  List<Map<String, dynamic>> values() {
+    return _memory.values
+        .where((e) => e != null)
+        .map((e) => Map<String, dynamic>.from(e!))
+        .toList();
+  }
+
   /// Frees up storage space in both the level2 cache and in-memory cache.
   ///
   /// Throws [JsonCacheException] to indicate operation failure.

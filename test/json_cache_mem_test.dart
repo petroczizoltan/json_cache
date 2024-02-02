@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:json_cache/json_cache.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -73,6 +75,27 @@ void main() {
         await initMemCache.value('key'); // wait..
         /// The error callback must have been invoked.
         expect(invoked, true);
+      });
+    });
+    group('values', () {
+      test('no values in memory', () async {
+        final JsonCacheMem memCache = JsonCacheMem();
+        final values = memCache.values();
+        expect(values, isEmpty);
+      });
+      test('some values in memory', () async {
+        final JsonCacheMem memCache = JsonCacheMem();
+        await memCache.refresh(profKey, profData);
+        await memCache.refresh(prefKey, prefData);
+        final values = memCache.values();
+        expect(values, hasLength(2));
+        expect(
+          values,
+          containsAll([
+            profData,
+            prefData,
+          ]),
+        );
       });
     });
     group('clear', () {
