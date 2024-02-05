@@ -12,6 +12,9 @@ class JsonCacheHive implements JsonCache {
 
   final Box<String> _box;
 
+  /// Returns how many items are in the cache.
+  int get valueCount => _box.values.length;
+
   /// Returns a copy of the cached values.
   List<Map<String, dynamic>> values() {
     return _box.values.map((String value) {
