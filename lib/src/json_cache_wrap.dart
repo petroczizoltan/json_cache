@@ -14,6 +14,9 @@ abstract class JsonCacheWrap implements JsonCache {
   @override
   Future<void> clear() => _wrapped.clear();
 
+  @override
+  List<Map<String, dynamic>> values() => _wrapped.values();
+
   /// Forwards to the [JsonCache.remove] of its wrapped instance.
   @override
   Future<void> remove(String key) => _wrapped.remove(key);

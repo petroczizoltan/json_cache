@@ -25,6 +25,10 @@ class JsonCacheHollow implements JsonCache {
 
   /// Does nothing.
   @override
+  List<Map<String, dynamic>> values() => const [];
+
+  /// Does nothing.
+  @override
   Future<void> refresh(String key, Map<String, dynamic> value) async {}
 
   /// Does nothing.

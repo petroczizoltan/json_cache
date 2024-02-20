@@ -21,6 +21,15 @@ class JsonCacheFake implements JsonCache {
 
   static final Map<String, Map<String, dynamic>?> _shrMem = {};
 
+  @override
+  List<Map<String, dynamic>> values() {
+    return _memory.values
+        .where((e) => e != null)
+        .map((e) => Map<String, dynamic>.from(e!))
+        .toList();
+  }
+
+
   /// Clears its internal in-memory storage.
   @override
   Future<void> clear() async {

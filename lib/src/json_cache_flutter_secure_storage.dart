@@ -20,6 +20,12 @@ class JsonCacheFlutterSecureStorage implements JsonCache {
   }
 
   @override
+  List<Map<String, dynamic>> values() {
+    // TODO: Implement me.
+    return const [];
+  }
+
+  @override
   Future<void> refresh(String key, Map<String, dynamic> value) async {
     await _storage.write(key: key, value: json.encode(value));
   }

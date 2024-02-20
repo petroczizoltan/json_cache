@@ -32,6 +32,9 @@ class JsonCacheTry implements JsonCache {
     }
   }
 
+  @override
+  List<Map<String, dynamic>> values() => _wrapped.values();
+
   /// Updates the data located at [key].
   ///
   /// Throws [JsonCacheException] to indicate operation failure.

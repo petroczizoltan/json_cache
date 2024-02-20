@@ -15,6 +15,9 @@ abstract class JsonCache {
   /// Retrieves the data located at [key] or `null` if a cache miss occurs.
   Future<Map<String, dynamic>?> value(String key);
 
+  /// Returns a copy of the values stored in memory.
+  List<Map<String, dynamic>> values();
+
   /// It either updates the data found at [key] with [value] or, if there is no
   /// previous data at [key], creates a new cache line at [key] with [value].
   ///

@@ -17,6 +17,12 @@ class JsonCacheSharedPreferences implements JsonCache {
     await _sharedPreferences.clear();
   }
 
+  @override
+  List<Map<String, dynamic>> values() {
+    // TODO: Implement me.
+    return const [];
+  }
+
   /// Removes an entry from the preferences file storage at [key].
   @override
   Future<void> remove(String key) async {

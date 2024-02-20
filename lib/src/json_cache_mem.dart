@@ -92,7 +92,7 @@ class JsonCacheMem implements JsonCache {
   /// shared mutex.
   static final _shrMutex = ReadWriteMutex();
 
-  /// Returns a copy of the values stored in memory.
+  @override
   List<Map<String, dynamic>> values() {
     return _memory.values
         .where((e) => e != null)

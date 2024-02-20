@@ -18,6 +18,12 @@ class JsonCacheSafeLocalStorage implements JsonCache {
   }
 
   @override
+  List<Map<String, dynamic>> values() {
+    // TODO: Implement me.
+    return const [];
+  }
+
+  @override
   Future<bool> contains(String key) async {
     return (await _cachedData).containsKey(key);
   }
